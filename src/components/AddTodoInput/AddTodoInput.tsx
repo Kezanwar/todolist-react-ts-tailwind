@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import { TodoInputProps } from '../../models';
 
 const AddTodoInput: React.FC<TodoInputProps> = ({ newTodo, setNewTodo, handleAddTodo }) => {
@@ -29,8 +27,7 @@ const AddTodoInput: React.FC<TodoInputProps> = ({ newTodo, setNewTodo, handleAdd
             </div>
             <input
               type="text"
-              id="simple-search"
-              className="bg-transparent transition-all focus:outline-none border-2 border-text-black rounded-lg  block w-full pl-10 p-2.5 text-lg"
+              className=" transition-all focus:outline-none  bg-transparent rounded-lg border-2 border-black text-text-black   block w-full pl-10 p-2.5 text-lg"
               placeholder="Create a new to do"
               required
               value={newTodo}
@@ -39,7 +36,7 @@ const AddTodoInput: React.FC<TodoInputProps> = ({ newTodo, setNewTodo, handleAdd
           </div>
           <button
             type="submit"
-            className="p-2.5 ml-2 transition-all border- text-lg font-medium rounded-lg border-2 text-maroon border-maroon  hover:opacity-60  focus:outline-none focus:scale-95"
+            className="p-2.5 ml-2  transition-all border- text-lg font-medium rounded-lg border-2 text-maroon border-maroon  hover:opacity-60  focus:outline-none focus:scale-95"
           >
             Add
           </button>

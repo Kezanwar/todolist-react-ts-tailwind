@@ -1,23 +1,27 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import { ToDo } from './models';
 
 import Container from './components/Container/Container';
 import Header from './components/Header/Header';
 import AddTodoInput from './components/AddTodoInput/AddTodoInput';
+import { saveTodo } from './services/storage';
 
 const App: React.FC = () => {
   const [newTodo, setNewTodo] = useState<string>('');
   const [todos, setTodos] = useState<ToDo[]>([]);
+  const firstRender = useRef<boolean>(true);
 
   const handleAddTodo = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
       if (newTodo) {
+        const id = v4();
+        const item = { complete: false, id: id, text: newTodo };
         setTodos((prev: ToDo[]) => {
-          const id = v4();
-          return [...prev, { complete: false, id: id, text: newTodo }];
+          return [...prev, item];
         });
+        saveTodo(item);
         setNewTodo('');
       }
     },
