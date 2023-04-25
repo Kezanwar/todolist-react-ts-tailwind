@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import React, { useCallback, useState } from 'react';
+import { v4 } from 'uuid';
+import { ToDo } from './models';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p className=''>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+import Container from './components/Container/Container';
+import Header from './components/Header/Header';
+import AddTodoInput from './components/AddTodoInput/AddTodoInput';
+
+const App: React.FC = () => {
+  const [newTodo, setNewTodo] = useState<string>('');
+  const [todos, setTodos] = useState<ToDo[]>([]);
+
+  const handleAddTodo = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      if (newTodo) {
+        setTodos((prev: ToDo[]) => {
+          const id = v4();
+          return [...prev, { complete: false, id: id, text: newTodo }];
+        });
+        setNewTodo('');
+      }
+    },
+    [newTodo]
   );
-}
+
+  return (
+    <Container className="app">
+      <Header />
+      <AddTodoInput newTodo={newTodo} setNewTodo={setNewTodo} handleAddTodo={handleAddTodo} />
+    </Container>
+  );
+};
 
 export default App;
