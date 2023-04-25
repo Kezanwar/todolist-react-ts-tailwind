@@ -8,7 +8,7 @@ import SunFlag from '../../assets/japanese-sun-flag.svg';
 import Fan from '../../assets/japanese-hand-fan.svg';
 import Fertilizer from '../../assets/japanese-fertilizer.svg';
 
-const icons = [Fan, TeaPot, SunFlag, Fertilizer];
+const icons = [SunFlag, Fan, Fertilizer, TeaPot];
 
 const Header: React.FC = () => {
   return (
