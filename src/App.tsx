@@ -28,6 +28,13 @@ const App: React.FC = () => {
     <Container className="app">
       <Header />
       <AddTodoInput newTodo={newTodo} setNewTodo={setNewTodo} handleAddTodo={handleAddTodo} />
+      {todos && (
+        <ul>
+          {todos.map((t) => {
+            return <li key={t.text}>{t.text}</li>;
+          })}
+        </ul>
+      )}
     </Container>
   );
 };

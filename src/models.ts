@@ -9,3 +9,7 @@ export interface TodoInputProps {
   setNewTodo: React.Dispatch<React.SetStateAction<string>>;
   handleAddTodo: (e: React.FormEvent) => void;
 }
+
+export interface TodoListProps {
+  todos: ToDo[];
+}
