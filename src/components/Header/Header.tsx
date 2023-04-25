@@ -1,15 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Logo from '../Logo/Logo';
+import { v4 } from 'uuid';
+
+import TeaPot from '../../assets/japanese-tea-pot.svg';
+import SunFlag from '../../assets/japanese-sun-flag.svg';
+import Fan from '../../assets/japanese-hand-fan.svg';
+import Fertilizer from '../../assets/japanese-fertilizer.svg';
+
+const icons = [SunFlag, Fan, Fertilizer, TeaPot];
 
 const Header: React.FC = () => {
   return (
-    <header className="flex justify-between">
-      <Logo />
-      <div className="flex items-center">
-        <p className="ml-4 lg:ml-6 text-sm md:text-lg">
-          A To-do List built with <span className="text-cyan-400  font-bold">TypeScript</span> &{' '}
-          <span className="text-cyan-400  font-bold">ReactJS</span>
+    <header className="">
+      <div className="flex justify-between text-maroon">
+        <Logo />
+        <div className="flex items-center gap-3 md:gap-6">
+          {icons.map((i) => {
+            const alt = v4();
+            return <img className="h-8 w-8 " key={alt} src={i} alt={alt} />;
+          })}
+        </div>
+      </div>
+      <div className="flex flex-col items-center justify-center mt-8">
+        <h4 className=" font-extrabold text-xl">
+          A To-do List built with <span className="text-maroon  font-bold">TypeScript</span> &{' '}
+          <span className="text-maroon  font-bold">ReactJS</span>
+        </h4>
+        <p className="mt-5 leading-[1.6] text-center">
+          To-do list apps tend to fall into two categories: the <em className="font-bold">complex</em> and the{' '}
+          <em className="font-bold">minimalist.</em>{' '}
+        </p>
+        <p className="mt-2 text-center">
+          <span className=" text-maroon font-bold underline ">Fussy</span> is somehow none of these.
         </p>
       </div>
     </header>
