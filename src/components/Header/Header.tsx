@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Logo from '../Logo/Logo';
 import { v4 } from 'uuid';
 
@@ -18,12 +17,12 @@ const Header: React.FC = () => {
         <div className="flex items-center gap-3 md:gap-6">
           {icons.map((i) => {
             const alt = v4();
-            return <img className="h-8 w-8 " key={alt} src={i} alt={alt} />;
+            return <img className="h-10 w-10 " key={alt} src={i} alt={alt} />;
           })}
         </div>
       </div>
       <div className="flex flex-col items-center justify-center mt-8">
-        <h4 className=" font-extrabold text-xl">
+        <h4 className=" text-center font-extrabold text-xl">
           A To-do List built with <span className="text-maroon  font-bold">TypeScript</span> &{' '}
           <span className="text-maroon  font-bold">ReactJS</span>
         </h4>

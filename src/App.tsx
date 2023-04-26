@@ -1,44 +1,21 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { v4 } from 'uuid';
-import { ToDo } from './models';
+import React from 'react';
 
 import Container from './components/Container/Container';
 import Header from './components/Header/Header';
-import AddTodoInput from './components/AddTodoInput/AddTodoInput';
-import { saveTodo } from './services/storage';
+import Todos from './components/Todos/Todos';
+
+import Cat from './assets/japanese-cat.svg';
 
 const App: React.FC = () => {
-  const [newTodo, setNewTodo] = useState<string>('');
-  const [todos, setTodos] = useState<ToDo[]>([]);
-  const firstRender = useRef<boolean>(true);
-
-  const handleAddTodo = useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
-      if (newTodo) {
-        const id = v4();
-        const item = { complete: false, id: id, text: newTodo };
-        setTodos((prev: ToDo[]) => {
-          return [...prev, item];
-        });
-        saveTodo(item);
-        setNewTodo('');
-      }
-    },
-    [newTodo]
-  );
-
   return (
     <Container className="app">
       <Header />
-      <AddTodoInput newTodo={newTodo} setNewTodo={setNewTodo} handleAddTodo={handleAddTodo} />
-      {todos && (
-        <ul>
-          {todos.map((t) => {
-            return <li key={t.text}>{t.text}</li>;
-          })}
-        </ul>
-      )}
+      <Todos />
+      {/* <img
+        className="z-[-1] fixed bottom-4 right-1 lg:bottom-[2rem] lg:right-[2rem] h-[120px] lg:h-[200px]"
+        src={Cat}
+        alt="meow"
+      /> */}
     </Container>
   );
 };
