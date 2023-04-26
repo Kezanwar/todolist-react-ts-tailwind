@@ -68,8 +68,14 @@ h6 {
   isolation: isolate;
 }
 
+input {
+  letter-spacing: -0.5px;
+}
+
 input::placeholder {
   transition: all 150ms ease;
+  letter-spacing: -0.5px;
+  color: #2c2c2c;
 }
 
 input:focus::placeholder {
@@ -80,9 +86,9 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px rgb(0, 0, 0) inset !important;
+  -webkit-box-shadow: 0 0 0 30px rgb(234, 234, 234) inset !important;
 }
 
 input:-webkit-autofill {
-  -webkit-text-fill-color: white !important;
+  -webkit-text-fill-color: #2c2c2c !important;
 }
