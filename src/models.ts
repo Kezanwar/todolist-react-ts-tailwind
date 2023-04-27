@@ -25,6 +25,7 @@ export interface TodoInputProps {
 export interface TodoListProps {
   todos: ToDo[];
   handleCompleteTodo?: handleCompleteTodo;
+  handleUnCompleteTodo?: handleCompleteTodo;
   handleDeleteTodo: handleDeleteTodo;
   title: string;
   titleIcon?: ReactNode;
@@ -33,6 +34,7 @@ export interface TodoListProps {
 export interface SingleTodoProps {
   todo: ToDo;
   handleCompleteTodo?: handleCompleteTodo;
+  handleUnCompleteTodo?: handleCompleteTodo;
   handleDeleteTodo: handleDeleteTodo;
 }
 
