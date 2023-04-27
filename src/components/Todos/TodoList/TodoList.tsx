@@ -1,7 +1,7 @@
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { TodoListProps } from '../../models';
+import { TodoListProps } from '../../../types/models';
 
 import SingleTodo from '../SingleTodo/SingleTodo';
 

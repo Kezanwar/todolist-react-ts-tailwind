@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import IconButton from '../IconButton/IconButton';
+import IconButton from '../../IconButton/IconButton';
 
-import { SingleTodoProps } from '../../models';
+import { SingleTodoProps } from '../../../types/models';
 
 const SingleTodo = ({ handleDeleteTodo, todo, handleCompleteTodo, handleUnCompleteTodo }: SingleTodoProps) => {
   const isComplete = !!todo?.complete;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TodoInputProps } from '../../models';
+import { TodoInputProps } from '../../../types/models';
 
 const AddTodoInput: React.FC<TodoInputProps> = ({ newTodo, setNewTodo, handleAddTodo }) => {
   return (

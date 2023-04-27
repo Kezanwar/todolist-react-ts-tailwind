@@ -1,4 +1,4 @@
-import { FetchTodos, RemoveTodo, SaveToDo, ToDo, UpdateToDo } from '../models';
+import { FetchTodos, RemoveTodo, SaveToDo, ToDo, UpdateToDo } from '../types/models';
 
 const STORAGE_KEYS = {
   TODOS: 'TODOS',
