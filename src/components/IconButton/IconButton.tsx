@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IconButtonProps } from '../../models';
+import { IconButtonProps } from '../../types/models';
 
 const IconButton = ({ icon, color, onClick }: IconButtonProps) => {
   return (

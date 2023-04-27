@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ToDo, handleAddTodo, handleCompleteTodo, handleDeleteTodo } from '../../models';
+import { ToDo, handleAddTodo, handleCompleteTodo, handleDeleteTodo } from '../../types/models';
 import { v4 } from 'uuid';
 import { fetchTodos, removeTodo, saveTodo, updateTodo } from '../../services/storage';
-import AddTodoInput from '../AddTodoInput/AddTodoInput';
-import TodoList from '../TodoList/TodoList';
+import AddTodoInput from './AddTodoInput/AddTodoInput';
+import TodoList from './TodoList/TodoList';
 
 import Cat from '../../assets/japanese-cat.svg';
 import Bird from '../../assets/japanese-bird.svg';
