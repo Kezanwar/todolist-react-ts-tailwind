@@ -1,30 +1,35 @@
 import React from 'react';
 import { TodoListProps } from '../../models';
+import SingleTodo from '../SingleTodo/SingleTodo';
 
-const TodoList = ({ todos, handleDeleteTodo, handleCompleteTodo, title, titleIcon }: TodoListProps) => {
+const TodoList = ({ type, todos, handleDeleteTodo, handleCompleteTodo, title, titleIcon }: TodoListProps) => {
   const count = todos?.length || 0;
+
+  const isComplete = type === 'complete';
+
   return (
-    <div role="listbox" className=" border-maroon rounded-lg p-8 flex-1 lg:max-w-[50%]">
-      <div className="flex gap-2 items-center">
+    <div role="listbox" className=" rounded-lg flex-1 lg:max-w-[50%]">
+      <div className="flex gap-2  items-center">
         {titleIcon && titleIcon}{' '}
-        <h5 className="text-xl font-bold text-maroon">
-          {title} ({count})
+        <h5 className={`text-xl md:text-center font-bold w-full ${!isComplete ? 'text-maroon' : 'text-my-green'}`}>
+          {title} <span className="text-black ">({count})</span>
         </h5>
       </div>
-      <div className="w-full mb-6 mt-4 h-[2px] bg-text-black"></div>
-      <ul className="flex flex-col gap-4">
+      <div className="w-full mb-8 mt-4 h-[2px] bg-text-black"></div>
+      <ul className={'flex flex-col gap-5'}>
         {todos?.length ? (
           todos.map((t) => {
             return (
-              <li className="bg-bg-white px-4 py-3 rounded-lg" key={t.text}>
-                {t.text}
-              </li>
+              <SingleTodo
+                key={t.id}
+                handleDeleteTodo={handleDeleteTodo}
+                handleCompleteTodo={handleCompleteTodo}
+                todo={t}
+              />
             );
           })
         ) : (
-          <li>
-            {count} items in your {title.toLowerCase()}
-          </li>
+          <li className="md:text-center">No items in your {title.toLowerCase()} yet</li>
         )}
       </ul>
     </div>

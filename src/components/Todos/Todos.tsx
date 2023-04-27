@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ToDo, handleAddTodo, handleCompleteTodo, handleDeleteTodo } from '../../models';
 import { v4 } from 'uuid';
-import { fetchTodos, saveTodo } from '../../services/storage';
+import { fetchTodos, removeTodo, saveTodo, updateTodo } from '../../services/storage';
 import AddTodoInput from '../AddTodoInput/AddTodoInput';
 import TodoList from '../TodoList/TodoList';
 
@@ -28,19 +28,26 @@ const Todos = () => {
     [newTodo]
   );
   const handleDeleteTodo: handleDeleteTodo = useCallback((id) => {
+    removeTodo(id);
     setTodos((prev: ToDo[]) => {
       return prev.filter((p) => p.id !== id);
     });
   }, []);
 
-  const handleCompleteTodo: handleCompleteTodo = useCallback((id) => {
-    setTodos((prev: ToDo[]) => {
-      const newArr = [...prev];
-      const iToUpdate = newArr.findIndex((el) => el.id === id);
-      newArr[iToUpdate].complete = true;
-      return newArr;
-    });
-  }, []);
+  const handleCompleteTodo: handleCompleteTodo = useCallback(
+    (id) => {
+      const iToUpdate = todos.findIndex((el) => el.id === id);
+      const newEl = { ...todos[iToUpdate], complete: true };
+      updateTodo(newEl);
+      setTodos((prev: ToDo[]) => {
+        const newArr = [...prev];
+        const iToUpdate = newArr.findIndex((el) => el.id === id);
+        newArr[iToUpdate].complete = true;
+        return newArr;
+      });
+    },
+    [todos]
+  );
 
   useEffect(() => {
     const prevTodos = fetchTodos();
@@ -49,23 +56,36 @@ const Todos = () => {
     }
   }, []);
 
+  const outstandingTodos: ToDo[] = useMemo(() => {
+    if (todos?.length) {
+      return todos.filter((t) => !t.complete);
+    } else return [];
+  }, [todos]);
+
+  const completedTodos: ToDo[] = useMemo(() => {
+    if (todos?.length) {
+      return todos.filter((t) => t.complete);
+    } else return [];
+  }, [todos]);
+
   return (
     <>
       <AddTodoInput newTodo={newTodo} setNewTodo={setNewTodo} handleAddTodo={handleAddTodo} />
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="mt-16  flex flex-col md:flex-row gap-12 lg:gap-36 xl:gap-52">
         <TodoList
+          type="outstanding"
           title="Outstanding To-do List"
           handleDeleteTodo={handleDeleteTodo}
           handleCompleteTodo={handleCompleteTodo}
-          todos={todos}
-          titleIcon={<img className="h-10" src={Cat} alt="meow" />}
+          todos={outstandingTodos}
+          // titleIcon={<img className="h-10" src={Cat} alt="meow" />}
         />
         <TodoList
+          type="complete"
           title="Completed To-do List"
           handleDeleteTodo={handleDeleteTodo}
-          handleCompleteTodo={handleCompleteTodo}
-          todos={todos}
-          titleIcon={<img className="h-10" src={Bird} alt="squawk" />}
+          todos={completedTodos}
+          // titleIcon={<img className="h-10" src={Bird} alt="squawk" />}
         />
       </div>
     </>

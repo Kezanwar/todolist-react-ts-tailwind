@@ -21,17 +21,17 @@ const Header: React.FC = () => {
           })}
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center mt-8">
-        <h4 className=" text-center font-extrabold text-xl">
+      <div className="flex flex-col md:items-center md:justify-center mt-12">
+        <h4 className=" md:text-center font-extrabold text-xl">
           A To-do List built with <span className="text-maroon  font-bold">TypeScript</span> &{' '}
           <span className="text-maroon  font-bold">ReactJS</span>
         </h4>
-        <p className="mt-5 leading-[1.6] text-center">
+        <p className="mt-5 leading-[1.6] md:text-center">
           To-do list apps tend to fall into two categories: the <em className="font-bold">complex</em> and the{' '}
           <em className="font-bold">minimalist.</em>{' '}
         </p>
-        <p className="mt-2 text-center">
-          <span className=" text-maroon font-bold underline ">Fussy</span> is somehow none of these.
+        <p className="mt-2 md:text-center">
+          <span className=" text-maroon font-bold  ">Fussy</span> is somehow none of these.
         </p>
       </div>
     </header>

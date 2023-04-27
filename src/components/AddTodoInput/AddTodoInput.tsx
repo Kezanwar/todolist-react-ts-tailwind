@@ -36,7 +36,7 @@ const AddTodoInput: React.FC<TodoInputProps> = ({ newTodo, setNewTodo, handleAdd
           </div>
           <button
             type="submit"
-            className="p-2.5 ml-2  transition-all border- text-lg font-medium rounded-lg border-2 text-maroon border-maroon  hover:opacity-60  focus:outline-none focus:scale-95"
+            className="p-2.5 ml-4 bg-maroon transition-all border- text-lg font-medium rounded-lg border-2 text-white border-maroon  hover:opacity-90  focus:outline-none active:scale-95"
           >
             Add
           </button>
