@@ -19,7 +19,7 @@ const Todos = () => {
         const id = v4();
         const item = { complete: false, id: id, text: newTodo };
         setTodos((prev: ToDo[]) => {
-          return [...prev, item];
+          return [item, ...prev];
         });
         saveTodo(item);
         setNewTodo('');
@@ -43,6 +43,21 @@ const Todos = () => {
         const newArr = [...prev];
         const iToUpdate = newArr.findIndex((el) => el.id === id);
         newArr[iToUpdate].complete = true;
+        return newArr;
+      });
+    },
+    [todos]
+  );
+
+  const handleUnCompleteTodo: handleCompleteTodo = useCallback(
+    (id) => {
+      const iToUpdate = todos.findIndex((el) => el.id === id);
+      const newEl = { ...todos[iToUpdate], complete: false };
+      updateTodo(newEl);
+      setTodos((prev: ToDo[]) => {
+        const newArr = [...prev];
+        const iToUpdate = newArr.findIndex((el) => el.id === id);
+        newArr[iToUpdate].complete = false;
         return newArr;
       });
     },
@@ -84,6 +99,7 @@ const Todos = () => {
           type="complete"
           title="Completed To-do List"
           handleDeleteTodo={handleDeleteTodo}
+          handleUnCompleteTodo={handleUnCompleteTodo}
           todos={completedTodos}
           // titleIcon={<img className="h-10" src={Bird} alt="squawk" />}
         />
