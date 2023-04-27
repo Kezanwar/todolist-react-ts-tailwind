@@ -16,7 +16,7 @@ const TodoList = ({ type, todos, handleDeleteTodo, handleCompleteTodo, title, ti
         </h5>
       </div>
       <div className="w-full mb-8 mt-4 h-[2px] bg-text-black"></div>
-      <ul className={'flex flex-col gap-4'}>
+      <ul className={'flex flex-col gap-5'}>
         {todos?.length ? (
           todos.map((t) => {
             return (

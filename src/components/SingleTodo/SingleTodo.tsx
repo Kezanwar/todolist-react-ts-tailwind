@@ -4,14 +4,14 @@ import IconButton from '../IconButton/IconButton';
 
 const SingleTodo = ({ handleDeleteTodo, todo, handleCompleteTodo }: SingleTodoProps) => {
   const isComplete = !!todo?.complete;
-  const btnColor = isComplete ? 'white' : 'maroon';
+  const btnColor = 'white';
   return (
     <li
       className={`${
-        !isComplete ? 'border-black text-maroon' : 'border-my-green bg-my-green text-off-green'
-      } border-2  px-4 py-3 font-bold rounded-full flex items-center justify-between `}
+        !isComplete ? 'border-maroon bg-maroon text-white' : 'border-my-green bg-my-green text-off-green'
+      } border-2  px-4 py-3 font-bold rounded-full flex items-center justify-between  `}
     >
-      {todo.text}{' '}
+      <input readOnly={isComplete} value={todo.text} className="bg-transparent w-full mr-2 focus:outline-none" />{' '}
       <div className="flex gap-1">
         <IconButton
           onClick={() => handleDeleteTodo(todo.id)}
