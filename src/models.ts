@@ -1,4 +1,4 @@
-import { ReactHTMLElement, ReactNode } from 'react';
+import { MouseEventHandler, ReactNode, SyntheticEvent } from 'react';
 
 export interface ToDo {
   id: string;
@@ -24,12 +24,28 @@ export interface TodoInputProps {
 
 export interface TodoListProps {
   todos: ToDo[];
-  handleCompleteTodo: handleCompleteTodo;
+  handleCompleteTodo?: handleCompleteTodo;
   handleDeleteTodo: handleDeleteTodo;
   title: string;
   titleIcon?: ReactNode;
+  type: string;
+}
+export interface SingleTodoProps {
+  todo: ToDo;
+  handleCompleteTodo?: handleCompleteTodo;
+  handleDeleteTodo: handleDeleteTodo;
+}
+
+export interface IconButtonProps {
+  icon: ReactNode;
+  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
+  color?: string;
 }
 
 export type SaveToDo = (todo: ToDo) => void;
+
+export type UpdateToDo = (todo: ToDo) => void;
+
+export type RemoveTodo = (id: string) => void;
 
 export type FetchTodos = () => ToDo[] | null;
